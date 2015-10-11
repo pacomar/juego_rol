@@ -1,0 +1,40 @@
+div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
+  div.container
+    div.navbar-header
+      button.navbar-toggle(type='button', ng-click='isCollapsed = !isCollapsed')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') RolWar
+
+    div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
+      ul.nav.navbar-nav
+        li(ng-repeat='item in menu', ui-sref-active='active')
+          a(ui-sref='{{item.state}}') {{item.title}}
+
+        li(ng-show='isAdmin()', ui-sref-active='active')
+          a(ui-sref='admin') Admin
+
+      div.nav.navbar-nav.navbar-right
+        ul(ng-hide='isLoggedIn()')
+          li(ng-hide='isLoggedIn()', ui-sref-active='active')
+            a(ui-sref='signup') Sign up
+
+          li(ng-hide='isLoggedIn()', ui-sref-active='active')
+            a(ui-sref='login') Login
+
+        div(ng-show='isLoggedIn()')
+          div.icono_cuenta
+            img(src='assets/images/caballero.jpg', alt='caballero')
+          div.nombre_cuenta Trostar
+          div.oro_cuenta 1000
+            img.icono_coins(src='assets/images/coins.png', alt='caballero')
+
+          div.dropdown
+            span#dLabel.glyphicon.glyphicon-option-vertical(data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+            ul.dropdown-menu(aria-labelledby="dLabel")
+              li
+                a(ui-sref='settings') Configuracion
+              li
+                a(ui-sref='logout') Salir

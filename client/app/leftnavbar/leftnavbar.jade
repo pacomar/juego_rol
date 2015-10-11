@@ -1,0 +1,4 @@
+div.continer(ng-controller='NavbarLeftCotrl')
+	ul
+		li(ng-repeat='item in menu', ui-sref-active='active')
+			a(ui-sref='{{item.state}}') {{item.title}}
